@@ -9,7 +9,7 @@ const App = () => {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/ued"
         element={
           <MainLayout
             preset={globalPreset}
@@ -18,38 +18,38 @@ const App = () => {
               {
                 key: 'libs',
                 title: '库',
-                path: '/libs'
+                path: '/ued/libs'
               },
               {
                 key: 'components',
                 title: '远程组件',
-                path: '/components'
+                path: '/ued/components'
               },
               {
                 key: 'engineering',
                 title: '工程化',
-                path: '/engineering'
+                path: '/ued/engineering'
               },
               {
                 key: 'blog',
                 title: '博客',
-                path: '/blog'
+                path: '/ued/blog'
               },
               {
                 key: 'kne-union',
                 title: '关于kne-union',
-                path: '/kne-union'
+                path: '/ued/kne-union'
               }
             ]}
           />
         }
       >
         <Route index element={<Home />} />
-        <Route path="/components" element={<RemoteComponents />} />
-        <Route path="/components/:id" element={<RemoteComponents />} />
-        <Route path="/error" element={<Error />} />
-        <Route path="/404" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/404" />} />
+        <Route path="components" element={<RemoteComponents />} />
+        <Route path="components/:id" element={<RemoteComponents />} />
+        <Route path="error" element={<Error />} />
+        <Route path="404" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="404" />} />
       </Route>
     </Routes>
   );
