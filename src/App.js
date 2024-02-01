@@ -9,41 +9,36 @@ const App = () => {
   return (
     <Routes>
       <Route
-        path="/ued"
+        path="/"
         element={
           <MainLayout
             preset={globalPreset}
             themeToken={globalPreset.themeToken}
             paths={[
               {
-                key: 'home',
-                title: '首页',
-                path: '/ued'
-              },
-              {
                 key: 'libs',
                 title: '库',
-                path: '/ued/libs'
+                path: '/libs'
               },
               {
                 key: 'components',
                 title: '远程组件',
-                path: '/ued/components'
+                path: '/components'
               },
               {
                 key: 'engineering',
                 title: '工程化',
-                path: '/ued/engineering'
+                path: '/engineering'
               },
               {
                 key: 'blog',
                 title: '博客',
-                path: '/ued/blog'
+                path: '/blog'
               },
               {
                 key: 'kne-union',
                 title: '关于kne-union',
-                path: '/ued/kne-union'
+                path: '/kne-union'
               }
             ]}
           />

@@ -72,7 +72,7 @@ const RemoteComponentsPage = compose(
 
   return (
     <Example
-      baseUrl="/ued/components"
+      baseUrl="/components"
       readme={components}
       pageProps={{
         titleExtra: `${libName}/${version}@${currentComponent}`,
