@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { globalPreset } from './preset';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -18,8 +18,8 @@ if (process.env.NODE_ENV === 'development') {
   });
 } else {
   root.render(
-    <BrowserRouter>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
