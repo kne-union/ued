@@ -10,9 +10,7 @@ const MainLayout = createWithRemoteLoader({
       <Layout
         navigation={{
           defaultTitle: 'KneUnion',
-          base: '/ued',
-          list: paths,
-          showIndex: false
+          list: paths
         }}
       >
         <Outlet />
