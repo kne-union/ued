@@ -4,7 +4,7 @@ import MainLayout from './MainLayout';
 import { globalPreset } from './preset';
 import './index.scss';
 
-const { Home, Error, NotFound } = pages;
+const { Home, Error, RemoteComponents, NotFound } = pages;
 const App = () => {
   return (
     <Routes>
@@ -45,6 +45,8 @@ const App = () => {
         }
       >
         <Route index element={<Home />} />
+        <Route path="/components" element={<RemoteComponents />} />
+        <Route path="/components/:id" element={<RemoteComponents />} />
         <Route path="/error" element={<Error />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" />} />

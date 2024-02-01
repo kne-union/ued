@@ -3,6 +3,7 @@ import { preset as fetchPreset } from '@kne/react-fetch';
 import { Spin, Empty } from 'antd';
 import axios from 'axios';
 import { preset as remoteLoaderPreset } from '@kne/remote-loader';
+import apis from './apis';
 
 window.PUBLIC_URL = process.env.PUBLIC_URL;
 
@@ -10,7 +11,7 @@ const componentsCoreRemote = {
   remote: 'components-core',
   url: 'https://registry.npmmirror.com',
   tpl: '{{url}}/@kne%2f{{remote}}/{{version}}/files/build',
-  defaultVersion: '0.1.3'
+  defaultVersion: '0.1.9'
 };
 
 remoteLoaderPreset({
@@ -21,7 +22,7 @@ remoteLoaderPreset({
       remote: 'components-iconfont',
       url: 'https://registry.npmmirror.com',
       tpl: '{{url}}/@kne%2f{{remote}}/{{version}}/files/build',
-      defaultVersion: '0.1.1'
+      defaultVersion: '0.1.2'
     }
   }
 });
@@ -50,6 +51,7 @@ fetchPreset({
 
 export const globalPreset = {
   ajax,
+  apis,
   themeToken: {
     colorPrimary: '#4F185A',
     colorPrimaryHover: '#702280'
