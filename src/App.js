@@ -16,6 +16,11 @@ const App = () => {
             themeToken={globalPreset.themeToken}
             paths={[
               {
+                key: 'home',
+                title: '首页',
+                path: '/ued'
+              },
+              {
                 key: 'libs',
                 title: '库',
                 path: '/ued/libs'
