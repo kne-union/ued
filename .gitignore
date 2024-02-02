@@ -137,3 +137,4 @@ yarn-error.log*
 .idea
 package-lock.json
 yarn.lock
+src/components/**/README.md
