@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkued=self.webpackChunkued||[]).push([[668],{35668:(e,t,u)=>{u.r(t),u.d(t,{default:()=>n});var a=u(84027),d=u(80184);const n=(0,a.createWithRemoteLoader)({modules:["Layout@Page"]})((e=>{let{remoteModules:t}=e;const[u]=t;return(0,d.jsx)(u,{noMargin:!0,noPadding:!0,children:"\u6211\u662f\u9996\u9875"})}))}}]);
-//# sourceMappingURL=668.23ab1986.chunk.js.map
