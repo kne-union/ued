@@ -9,6 +9,7 @@ const loadableWithProps = func =>
 const pages = {
   Home: loadableWithProps(() => import('./Home')),
   RemoteComponents: loadableWithProps(() => import('./RemoteComponents')),
+  Libs: loadableWithProps(() => import('./Libs')),
   Error: loadableWithProps(() => import('./Error')),
   NotFound: loadableWithProps(() => import('./NotFound'))
 };

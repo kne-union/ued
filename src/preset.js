@@ -23,6 +23,12 @@ remoteLoaderPreset({
       url: 'https://registry.npmmirror.com',
       tpl: '{{url}}/@kne%2f{{remote}}/{{version}}/files/build',
       defaultVersion: '0.1.2'
+    },
+    'react-form': {
+      remote: 'react-form',
+      url: 'https://registry.npmmirror.com',
+      tpl: '{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build',
+      defaultVersion: '2.1.24'
     }
   }
 });
