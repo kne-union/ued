@@ -39,9 +39,11 @@ const RemoteComponentsPage = compose(
 
   const [fields, getFilterValue] = remoteModules;
   const [filter, setFilter] = useState([]);
+
   const { id: currentComponent } = useParams();
   const filterValue = getFilterValue(filter);
   const libNameRef = useRef(null);
+  const currentComponentNameRef = useRef(null);
   const filterVersion = filterValue['version'];
 
   const moduleTokens = useMemo(() => {
@@ -61,7 +63,9 @@ const RemoteComponentsPage = compose(
     modules: moduleTokens
   });
 
-  const { components, libName, version } = useMemo(() => {
+  console.log(targetModules, moduleTokens);
+
+  const { components, currentComponentName } = useMemo(() => {
     if (loading || error) {
       return {};
     }
@@ -83,26 +87,29 @@ const RemoteComponentsPage = compose(
       {}
     );
 
-    const libName = (() => {
+    const currentComponentName = (() => {
       if (currentComponent && components[currentComponent]) {
+        libNameRef.current = components[currentComponent].libKey;
         return currentComponent;
       }
+
+      libNameRef.current = get(Object.values(components), '[0].libKey');
 
       return get(Object.keys(components), '[0]');
     })();
 
     const version = (() => {
-      if (libNameRef.current !== libName) {
+      if (currentComponentNameRef.current !== currentComponentName) {
         setFilter(filter => {
           return filter.filter(({ name }) => name !== 'version');
         });
-        libNameRef.current = libName;
-        return get(libsMap.get(components[libName].libKey), 'version[0].value');
+        currentComponentNameRef.current = currentComponentName;
+        return get(libsMap.get(components[currentComponentName].libKey), 'version[0].value');
       }
-      return filterVersion || get(libsMap.get(components[libName].libKey), 'version[0].value');
+      return filterVersion || get(libsMap.get(components[currentComponentName].libKey), 'version[0].value');
     })();
 
-    return { components, libName, version };
+    return { components, currentComponentName };
   }, [loading, error, targetModules, filterVersion, currentComponent, libsMap]);
 
   if (loading) {
@@ -115,40 +122,35 @@ const RemoteComponentsPage = compose(
 
   const { AdvancedSelectFilterItem } = fields;
 
-  const libKey = get(components, `${libName}.libKey`);
+  const libKey = get(components, `${currentComponentName}.libKey`);
 
   return (
     <Example
       baseUrl="/libs"
       readme={components}
-      pageProps={{
-        filter: {
-          value: filter,
-          onChange: setFilter,
-          list: [
-            [
-              <AdvancedSelectFilterItem
-                label="版本"
-                name="version"
-                single
-                api={{
-                  data: libKey,
-                  loader: ({ data }) => {
-                    return {
-                      pageData: get(libsMap.get(data), 'version', [])
-                    };
-                  }
-                }}
-              />
-            ]
-          ]
+      pageProps={
+        {
+          /*filter: {
+                value: filter, onChange: setFilter, list: [[<AdvancedSelectFilterItem
+                    label="版本"
+                    name="version"
+                    single
+                    api={{
+                        data: libKey, loader: ({data}) => {
+                            return {
+                                pageData: get(libsMap.get(data), 'version', [])
+                            };
+                        }
+                    }}
+                />]]
+            }*/
         }
-      }}
+      }
     />
   );
 });
 
-const RemoteComponents = createWithRemoteLoader({
+const Libs = createWithRemoteLoader({
   modules: ['Global@usePreset']
 })(({ remoteModules }) => {
   const [usePreset] = remoteModules;
@@ -156,4 +158,4 @@ const RemoteComponents = createWithRemoteLoader({
   return <RemoteComponentsPage {...Object.assign({}, apis.manifest.getDetail)} />;
 });
 
-export default RemoteComponents;
+export default Libs;
