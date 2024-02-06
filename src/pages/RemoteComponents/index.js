@@ -1,5 +1,6 @@
 import { useMemo, useState, useRef } from 'react';
 import { createWithRemoteLoader, useLoader } from '@kne/remote-loader';
+import { Typography } from 'antd';
 import createEntry from '@kne/modules-dev/dist/create-entry';
 import { useParams, Navigate } from 'react-router-dom';
 import get from 'lodash/get';
@@ -20,6 +21,7 @@ const RemoteComponentsPage = compose(
       return {
         label: item.name,
         value: item.name,
+        packageName: item.packageName,
         version: Object.keys(item.versions)
           .sort((a, b) => {
             return new Date(item.versions[b].time) - new Date(item.versions[a].time);
@@ -76,7 +78,14 @@ const RemoteComponentsPage = compose(
       baseUrl="/components"
       readme={components}
       pageProps={{
-        titleExtra: `${libName}/${version}@${currentComponent}`,
+        titleExtra: (
+          <Typography>
+            packageName:<Typography.Text code>{get(libsMap.get(libName), 'packageName')}</Typography.Text> token:
+            <Typography.Text code>
+              {libName}/{version}@{currentComponent}
+            </Typography.Text>
+          </Typography>
+        ),
         filter: {
           value: filter,
           onChange: setFilter,

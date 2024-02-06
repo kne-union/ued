@@ -1,8 +1,11 @@
+
 # Banner
+
 
 ### 概述
 
 首页 Banner
+
 
 ### 示例
 
@@ -10,7 +13,7 @@
 
 - 这里填写示例标题
 - 这里填写示例说明
-- \_Banner(@components/Banner)
+- _Banner(@components/Banner)
 
 ```jsx
 const { default: Banner } = _Banner;
@@ -19,9 +22,12 @@ const BaseExample = () => {
 };
 
 render(<BaseExample />);
+
 ```
+
 
 ### API
 
 | 属性名 | 说明 | 类型 | 默认值 |
 | ------ | ---- | ---- | ------ |
+

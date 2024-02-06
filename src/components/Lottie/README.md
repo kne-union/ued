@@ -1,8 +1,11 @@
+
 # Lottie
+
 
 ### 概述
 
 运行 lottie 动画
+
 
 ### 示例
 
@@ -10,7 +13,7 @@
 
 - 这里填写示例标题
 - 这里填写示例说明
-- \_Lottie(@components/Lottie)
+- _Lottie(@components/Lottie)
 
 ```jsx
 const { default: Lottie } = _Lottie;
@@ -19,9 +22,12 @@ const BaseExample = () => {
 };
 
 render(<BaseExample />);
+
 ```
+
 
 ### API
 
 | 属性名 | 说明 | 类型 | 默认值 |
 | ------ | ---- | ---- | ------ |
+
