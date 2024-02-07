@@ -29,7 +29,7 @@ const Home = createWithRemoteLoader({
                 startRef.current.scrollIntoView();
               }}
             >
-              开始学习
+              开始
             </Button>
           </Col>
         </Row>
