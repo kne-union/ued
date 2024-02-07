@@ -4,33 +4,9 @@ import { Spin, Empty } from 'antd';
 import axios from 'axios';
 import { preset as remoteLoaderPreset } from '@kne/remote-loader';
 import apis from './apis';
+import transform from 'lodash/transform';
 
 window.PUBLIC_URL = process.env.PUBLIC_URL;
-
-const componentsCoreRemote = {
-  remote: 'components-core',
-  url: 'https://registry.npmmirror.com',
-  tpl: '{{url}}/@kne-components' + '%2f{{remote}}/{{version}}/files/build',
-  defaultVersion: '0.1.10'
-};
-
-remoteLoaderPreset({
-  remotes: {
-    default: componentsCoreRemote,
-    'components-core': componentsCoreRemote,
-    'components-iconfont': {
-      remote: 'components-iconfont',
-      url: 'https://registry.npmmirror.com',
-      tpl: '{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build',
-      defaultVersion: '0.1.3'
-    },
-    'react-form': {
-      remote: 'react-form',
-      url: 'https://registry.npmmirror.com',
-      tpl: '{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build'
-    }
-  }
-});
 
 export const ajax = axios.create({
   validateStatus: function () {
@@ -38,21 +14,76 @@ export const ajax = axios.create({
   }
 });
 
-fetchPreset({
-  ajax,
-  loading: <Spin delay={500} style={{ position: 'absolute', left: '50%', padding: '10px', transform: 'translateX(-50%)' }} />,
-  error: null,
-  empty: <Empty />,
-  transformResponse: response => {
-    const { data } = response;
-    response.data = {
-      code: data.code === 0 ? 200 : data.code,
-      msg: data.msg,
-      results: data.data
-    };
-    return response;
-  }
-});
+export const globalInit = async () => {
+  fetchPreset({
+    ajax,
+    loading: (
+      <Spin
+        delay={500}
+        style={{
+          position: 'absolute',
+          left: '50%',
+          padding: '10px',
+          transform: 'translateX(-50%)'
+        }}
+      />
+    ),
+    error: null,
+    empty: <Empty />,
+    transformResponse: response => {
+      const { data } = response;
+      response.data = {
+        code: data.code === 0 ? 200 : data.code,
+        msg: data.msg,
+        results: data.data
+      };
+      return response;
+    }
+  });
+
+  const { data } = await ajax(Object.assign({}, apis.manifest.getDetail));
+
+  const componentsMap = new Map(data['remote-components'].map(item => [item.name, item]));
+
+  const remoteUrl = 'https://registry.npmmirror.com',
+    remoteTpl = '{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build';
+
+  const componentsCoreRemote = {
+    remote: 'components-core',
+    url: remoteUrl,
+    tpl: remoteTpl,
+    defaultVersion: componentsMap.get('components-core')['version']
+  };
+
+  const componentsIconfont = {
+    remote: 'components-iconfont',
+    url: remoteUrl,
+    tpl: remoteTpl,
+    defaultVersion: componentsMap.get('components-iconfont')['version']
+  };
+
+  const libs = transform(
+    data['libs'],
+    (result, value) => {
+      result[value.name] = {
+        remote: value.name,
+        url: remoteUrl,
+        tpl: remoteTpl,
+        defaultVersion: value.version
+      };
+    },
+    {}
+  );
+
+  remoteLoaderPreset({
+    remotes: {
+      default: componentsCoreRemote,
+      'components-core': componentsCoreRemote,
+      'components-iconfont': componentsIconfont,
+      ...libs
+    }
+  });
+};
 
 export const globalPreset = {
   ajax,

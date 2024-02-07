@@ -1,9 +1,6 @@
 const getDetail = {
   url: '/ued-manifest/manifest.json',
-  method: 'GET',
-  transformResponse: response => {
-    return { data: { code: 200, results: response.data } };
-  }
+  method: 'GET'
 };
 
 const apis = { getDetail };

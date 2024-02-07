@@ -129,7 +129,15 @@ const RemoteComponents = createWithRemoteLoader({
 })(({ remoteModules }) => {
   const [usePreset] = remoteModules;
   const { apis } = usePreset();
-  return <RemoteComponentsPage {...Object.assign({}, apis.manifest.getDetail)} />;
+  return (
+    <RemoteComponentsPage
+      {...Object.assign({}, apis.manifest.getDetail, {
+        transformResponse: response => {
+          return { data: { code: 200, results: response.data } };
+        }
+      })}
+    />
+  );
 });
 
 export default RemoteComponents;
