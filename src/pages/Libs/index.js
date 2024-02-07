@@ -63,8 +63,6 @@ const RemoteComponentsPage = compose(
     modules: moduleTokens
   });
 
-  console.log(targetModules, moduleTokens);
-
   const { components, currentComponentName } = useMemo(() => {
     if (loading || error) {
       return {};
@@ -109,7 +107,7 @@ const RemoteComponentsPage = compose(
       return filterVersion || get(libsMap.get(components[currentComponentName].libKey), 'version[0].value');
     })();
 
-    return { components, currentComponentName };
+    return { components, currentComponentName, version };
   }, [loading, error, targetModules, filterVersion, currentComponent, libsMap]);
 
   if (loading) {
@@ -131,19 +129,19 @@ const RemoteComponentsPage = compose(
       pageProps={
         {
           /*filter: {
-                value: filter, onChange: setFilter, list: [[<AdvancedSelectFilterItem
-                    label="版本"
-                    name="version"
-                    single
-                    api={{
-                        data: libKey, loader: ({data}) => {
-                            return {
-                                pageData: get(libsMap.get(data), 'version', [])
-                            };
-                        }
-                    }}
-                />]]
-            }*/
+                      value: filter, onChange: setFilter, list: [[<AdvancedSelectFilterItem
+                          label="版本"
+                          name="version"
+                          single
+                          api={{
+                              data: libKey, loader: ({data}) => {
+                                  return {
+                                      pageData: get(libsMap.get(data), 'version', [])
+                                  };
+                              }
+                          }}
+                      />]]
+                  }*/
         }
       }
     />
