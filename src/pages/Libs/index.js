@@ -129,19 +129,19 @@ const RemoteComponentsPage = compose(
       pageProps={
         {
           /*filter: {
-                      value: filter, onChange: setFilter, list: [[<AdvancedSelectFilterItem
-                          label="版本"
-                          name="version"
-                          single
-                          api={{
-                              data: libKey, loader: ({data}) => {
-                                  return {
-                                      pageData: get(libsMap.get(data), 'version', [])
-                                  };
-                              }
-                          }}
-                      />]]
-                  }*/
+                            value: filter, onChange: setFilter, list: [[<AdvancedSelectFilterItem
+                                label="版本"
+                                name="version"
+                                single
+                                api={{
+                                    data: libKey, loader: ({data}) => {
+                                        return {
+                                            pageData: get(libsMap.get(data), 'version', [])
+                                        };
+                                    }
+                                }}
+                            />]]
+                        }*/
         }
       }
     />
@@ -153,7 +153,15 @@ const Libs = createWithRemoteLoader({
 })(({ remoteModules }) => {
   const [usePreset] = remoteModules;
   const { apis } = usePreset();
-  return <RemoteComponentsPage {...Object.assign({}, apis.manifest.getDetail)} />;
+  return (
+    <RemoteComponentsPage
+      {...Object.assign({}, apis.manifest.getDetail, {
+        transformResponse: response => {
+          return { data: { code: 200, results: response.data } };
+        }
+      })}
+    />
+  );
 });
 
 export default Libs;
