@@ -10,6 +10,7 @@ const pages = {
   Home: loadableWithProps(() => import('./Home')),
   RemoteComponents: loadableWithProps(() => import('./RemoteComponents')),
   Libs: loadableWithProps(() => import('./Libs')),
+  Miniprograms: loadableWithProps(() => import('./Miniprograms')),
   Error: loadableWithProps(() => import('./Error')),
   NotFound: loadableWithProps(() => import('./NotFound'))
 };
