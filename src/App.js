@@ -4,7 +4,7 @@ import MainLayout from './MainLayout';
 import { globalPreset } from './preset';
 import './index.scss';
 
-const { Home, Error, RemoteComponents, Libs, NotFound } = pages;
+const { Home, Error, RemoteComponents, Libs, Miniprograms, NotFound } = pages;
 const App = () => {
   return (
     <Routes>
@@ -24,6 +24,11 @@ const App = () => {
                 key: 'components',
                 title: '远程组件',
                 path: '/components'
+              },
+              {
+                key: 'miniprograms',
+                title: '小程序',
+                path: '/miniprograms'
               },
               {
                 key: 'engineering',
@@ -49,6 +54,8 @@ const App = () => {
         <Route path="components/:id" element={<RemoteComponents />} />
         <Route path="libs" element={<Libs />} />
         <Route path="libs/:id" element={<Libs />} />
+        <Route path="miniprograms" element={<Miniprograms />} />
+        <Route path="miniprograms/:id" element={<Miniprograms />} />
         <Route path="error" element={<Error />} />
         <Route path="404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="404" />} />
