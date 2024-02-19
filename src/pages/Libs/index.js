@@ -6,7 +6,6 @@ import get from 'lodash/get';
 import transform from 'lodash/transform';
 import { withFetch } from '@kne/react-fetch';
 import compose from '@kne/compose';
-import '@kne/modules-dev/dist/create-entry.css';
 
 const Example = createEntry.Example;
 

@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import pages from './pages';
 import MainLayout from './MainLayout';
 import { globalPreset } from './preset';
+import '@kne/modules-dev/dist/create-entry.css';
 import './index.scss';
 
 const { Home, Error, RemoteComponents, Libs, Miniprograms, NotFound } = pages;
