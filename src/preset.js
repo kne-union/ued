@@ -55,12 +55,18 @@ export const globalInit = async () => {
     defaultVersion: componentsMap.get('components-core')['version']
   };
 
-  const componentsIconfont = {
-    remote: 'components-iconfont',
-    url: remoteUrl,
-    tpl: remoteTpl,
-    defaultVersion: componentsMap.get('components-iconfont')['version']
-  };
+  const remoteComponents = transform(
+    data['remote-components'],
+    (result, value) => {
+      result[value.name] = {
+        remote: value.name,
+        url: remoteUrl,
+        tpl: remoteTpl,
+        defaultVersion: value.version
+      };
+    },
+    {}
+  );
 
   const libs = transform(
     data['libs'],
@@ -78,8 +84,7 @@ export const globalInit = async () => {
   remoteLoaderPreset({
     remotes: {
       default: componentsCoreRemote,
-      'components-core': componentsCoreRemote,
-      'components-iconfont': componentsIconfont,
+      ...remoteComponents,
       ...libs
     }
   });
