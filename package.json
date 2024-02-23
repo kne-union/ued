@@ -12,6 +12,7 @@
   "scripts": {
     "start": "cross-env PORT=3001 MODULES_DEV_PUBLIC_URL=/ craco start",
     "build": "cross-env COMPONENTS_NAME=ued MODULES_DEV_PUBLIC_URL=/ued  craco build",
+    "build-root": "cross-env COMPONENTS_NAME=ued MODULES_DEV_PUBLIC_URL=/  craco build",
     "test": "craco test --coverage",
     "eject": "react-scripts eject",
     "init": "npm i --legacy-peer-deps",
