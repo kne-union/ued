@@ -12,7 +12,7 @@ const Example = createEntry.Example;
 const RemoteComponentsPage = compose(
   withFetch,
   createWithRemoteLoader({
-    modules: ['Filter@fields', 'Filter@getFilterValue']
+    modules: ['Filter@getFilterValue']
   })
 )(({ remoteModules, data }) => {
   const { libs, libsMap } = useMemo(() => {
@@ -36,7 +36,7 @@ const RemoteComponentsPage = compose(
     return { libs, libsMap };
   }, [data]);
 
-  const [fields, getFilterValue] = remoteModules;
+  const [getFilterValue] = remoteModules;
   const [filter, setFilter] = useState([]);
 
   const { id: currentComponent } = useParams();
@@ -62,7 +62,7 @@ const RemoteComponentsPage = compose(
     modules: moduleTokens
   });
 
-  const { components, currentComponentName } = useMemo(() => {
+  const { components } = useMemo(() => {
     if (loading || error) {
       return {};
     }
@@ -117,9 +117,9 @@ const RemoteComponentsPage = compose(
     return <Navigate to={`/error?msg=加载远程组件库可能不符合规范，您可以向开发者报告该问题`} replace />;
   }
 
-  const { AdvancedSelectFilterItem } = fields;
+  /*const { AdvancedSelectFilterItem } = fields;
 
-  const libKey = get(components, `${currentComponentName}.libKey`);
+  const libKey = get(components, `${currentComponentName}.libKey`);*/
 
   return (
     <Example

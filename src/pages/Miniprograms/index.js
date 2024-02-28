@@ -17,13 +17,14 @@ const MiniprogramsPage = compose(
     <Example
       baseUrl="/miniprograms"
       readme={transform(
-        miniprograms.map(({ packageName, description, readme }) => {
+        miniprograms.map(({ packageName, description, name, readme }) => {
           return Object.assign({}, readme, {
+            summary: `<p style="text-align: center"><img width="200px" height="200px" src="${process.env.NODE_ENV === 'development' ? '/qrcode.jpg' : `/${name}/index.jpg`}" alt="小程序首页"></p>${readme.summary}`,
             packageName,
             description,
             example: Object.assign({}, readme.example, {
-              list: (readme.example.list || []).map(item => {
-                return Object.assign({}, item, { qrcodeUrl: window.PUBLIC_URL + '/qrcode.jpg' });
+              list: (readme.example.list || []).map((item, index) => {
+                return Object.assign({}, item, { qrcodeUrl: process.env.NODE_ENV === 'development' ? '/qrcode.jpg' : `/${name}/${index}.jpg` });
               })
             })
           });
