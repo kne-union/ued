@@ -12,6 +12,7 @@ const pages = {
   Libs: loadableWithProps(() => import('./Libs')),
   Miniprograms: loadableWithProps(() => import('./Miniprograms')),
   Blog: loadableWithProps(() => import('./Blog')),
+  Engineering: loadableWithProps(() => import('./Engineering')),
   Error: loadableWithProps(() => import('./Error')),
   NotFound: loadableWithProps(() => import('./NotFound'))
 };
