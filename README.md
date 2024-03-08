@@ -1,1 +1,1 @@
-请访问 [http://ued.kne-union.site/](http://ued.kne-union.site/) 进入主页
+请访问 [https://kne-union.github.io/ued](https://kne-union.github.io/ued) 进入主页
