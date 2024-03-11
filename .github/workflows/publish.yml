@@ -5,7 +5,7 @@ name: Node.js Package
 
 on:
   pull_request:
-    branches: [master]
+    branches: [ master ]
     types:
       - closed
 jobs:
@@ -30,3 +30,15 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+
+      - name: auto version
+        run: npx @kne/npm-tools nextPatchVersion
+
+      - name: Publish Npm
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.KNE_PACKAGE_PUBLISH}}
+        run: npm publish --access=public
+      ## 请修改对应的packageName后取消以下命令的注释
+      - name: Sync To Cnpm
+        run: npm i -g cnpm && cnpm sync @kne-components/ued
+
