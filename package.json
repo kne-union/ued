@@ -1,6 +1,9 @@
 {
   "name": "@kne-components/ued",
   "version": "0.1.0",
+  "files": [
+    "build"
+  ],
   "dependencies": {
     "@kne/compose": "^0.1.0",
     "lottie-web": "^5.12.2",
