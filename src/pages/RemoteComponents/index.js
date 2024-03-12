@@ -81,7 +81,7 @@ const RemoteComponentsPage = compose(
           <Typography>
             packageName:<Typography.Text code>{get(libsMap.get(libName), 'packageName')}</Typography.Text> token:
             <Typography.Text code>
-              {libName}/{version}@{currentComponent}
+              {libName}/{version}:{currentComponent}
             </Typography.Text>
           </Typography>
         ),

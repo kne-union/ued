@@ -31,7 +31,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
 
-      - name: auto version
+      - name: Auto Version
         run: npx @kne/npm-tools nextPatchVersion
 
       - name: Publish Npm
