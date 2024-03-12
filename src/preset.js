@@ -6,7 +6,11 @@ import { preset as remoteLoaderPreset } from '@kne/remote-loader';
 import apis from './apis';
 import transform from 'lodash/transform';
 
-window.PUBLIC_URL = process.env.PUBLIC_URL;
+if (window.runtimePublicUrl) {
+  window.PUBLIC_URL = window.runtimePublicUrl;
+} else {
+  window.PUBLIC_URL = process.env.PUBLIC_URL;
+}
 
 export const ajax = axios.create({
   validateStatus: function () {
