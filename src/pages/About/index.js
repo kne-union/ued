@@ -7,7 +7,7 @@ const About = createWithRemoteLoader({
   const [MarkdownRender, Page] = remoteModules;
 
   return (
-    <Page className="md-content" name="about" title="关于kne-union">
+    <Page name="about" title="关于kne-union">
       <Fetch
         url={window.PUBLIC_URL + '/about.md'}
         transformResponse={response => {
@@ -16,7 +16,7 @@ const About = createWithRemoteLoader({
           };
         }}
         render={({ data }) => {
-          return <MarkdownRender content={data} assetsPath={window.PUBLIC_URL + '/assets'} />;
+          return <MarkdownRender className="md-content" content={data} assetsPath={window.PUBLIC_URL + '/assets'} />;
         }}
       />
     </Page>
