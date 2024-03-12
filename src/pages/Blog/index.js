@@ -4,7 +4,7 @@ const Blog = createWithRemoteLoader({
   modules: ['components-document:MarkdownPage']
 })(({ remoteModules }) => {
   const [MarkdownPage] = remoteModules;
-  return <MarkdownPage name="blog" className="md-content" baseUrl={'/blog'} assetsPath={'/blog/assets'} />;
+  return <MarkdownPage name="blog" contentclassName="md-content" baseUrl={'/blog'} assetsPath={'/blog/assets'} />;
 });
 
 export default Blog;
