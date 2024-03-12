@@ -5,7 +5,7 @@ import { globalPreset } from './preset';
 import '@kne/modules-dev/dist/create-entry.css';
 import './index.scss';
 
-const { Home, Error, RemoteComponents, Libs, Miniprograms, Blog, Engineering, NotFound } = pages;
+const { Home, Error, RemoteComponents, Libs, Miniprograms, Blog, Engineering, About, NotFound } = pages;
 const App = () => {
   return (
     <Routes>
@@ -44,7 +44,7 @@ const App = () => {
               {
                 key: 'kne-union',
                 title: '关于kne-union',
-                path: '/kne-union'
+                path: '/about'
               }
             ]}
           />
@@ -59,6 +59,7 @@ const App = () => {
         <Route path="miniprograms/:id" element={<Miniprograms />} />
         <Route path="blog" element={<Blog />} />
         <Route path="engineering" element={<Engineering />} />
+        <Route path="about" element={<About />} />
         <Route path="error" element={<Error />} />
         <Route path="404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="404" />} />

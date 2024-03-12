@@ -1,5 +1,5 @@
 const getDetail = {
-  url: (window.runtimePublicUrl || '') + '/ued-manifest/manifest.json',
+  url: '/ued-manifest/manifest.json',
   method: 'GET',
   cache: 'ued-manifest'
 };
