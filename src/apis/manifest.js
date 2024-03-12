@@ -1,6 +1,7 @@
 const getDetail = {
   url: '/ued-manifest/manifest.json',
-  method: 'GET'
+  method: 'GET',
+  cache: 'ued-manifest'
 };
 
 const apis = { getDetail };
