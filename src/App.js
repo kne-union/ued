@@ -1,11 +1,11 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import pages from './pages';
 import MainLayout from './MainLayout';
 import { globalPreset } from './preset';
 import '@kne/modules-dev/dist/create-entry.css';
 import './index.scss';
 
-const { Home, Error, RemoteComponents, Libs, Miniprograms, Blog, Engineering, About, NotFound } = pages;
+const { Home, Error, RemoteComponents, Libs, Miniprograms, PostCat, Blog, Engineering, About, NotFound } = pages;
 const App = () => {
   return (
     <Routes>
@@ -30,6 +30,11 @@ const App = () => {
                 key: 'miniprograms',
                 title: '小程序',
                 path: '/miniprograms'
+              },
+              {
+                key: 'postcat',
+                title: 'PostCat',
+                path: '/postcat'
               },
               {
                 key: 'engineering',
@@ -57,6 +62,8 @@ const App = () => {
         <Route path="libs/:id" element={<Libs />} />
         <Route path="miniprograms" element={<Miniprograms />} />
         <Route path="miniprograms/:id" element={<Miniprograms />} />
+        <Route path="postcat" element={<PostCat baseUrl="/postcat" />} />
+        <Route path="postcat/*" element={<PostCat baseUrl="/postcat" />} />
         <Route path="blog" element={<Blog />} />
         <Route path="engineering" element={<Engineering />} />
         <Route path="about" element={<About />} />
