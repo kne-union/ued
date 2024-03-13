@@ -23,9 +23,9 @@ const MDContent = createWithRemoteLoader({
 });
 
 const About = createWithRemoteLoader({
-  modules: ['components-document:MarkdownRender', 'components-core:Layout@Page', 'components-core:Layout@Menu']
+  modules: ['components-core:Layout@Page', 'components-core:Layout@Menu']
 })(({ remoteModules }) => {
-  const [MarkdownRender, Page, Menu] = remoteModules;
+  const [Page, Menu] = remoteModules;
 
   return (
     <Page
