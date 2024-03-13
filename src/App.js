@@ -48,7 +48,7 @@ const App = () => {
               },
               {
                 key: 'kne-union',
-                title: '关于kne-union',
+                title: '关于我们',
                 path: '/about'
               }
             ]}
@@ -67,6 +67,7 @@ const App = () => {
         <Route path="blog" element={<Blog />} />
         <Route path="engineering" element={<Engineering />} />
         <Route path="about" element={<About />} />
+        <Route path="about/*" element={<About />} />
         <Route path="error" element={<Error />} />
         <Route path="404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="404" />} />
