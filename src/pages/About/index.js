@@ -30,7 +30,7 @@ const About = createWithRemoteLoader({
   return (
     <Page
       name="about"
-      title="关于kne-union"
+      title="关于我们"
       menu={
         <Menu
           items={[
