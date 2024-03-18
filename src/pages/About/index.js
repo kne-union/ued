@@ -1,7 +1,7 @@
 import { createWithRemoteLoader } from '@kne/remote-loader';
 import Fetch from '@kne/react-fetch';
 import { Routes, Route, Navigate, useSearchParams } from 'react-router-dom';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 const MDContent = createWithRemoteLoader({
   modules: ['components-document:MarkdownRender']
@@ -49,7 +49,7 @@ const About = createWithRemoteLoader({
   modules: ['components-core:Layout@Page', 'components-core:Layout@Menu']
 })(({ remoteModules }) => {
   const [Page, Menu] = remoteModules;
-
+  const [current, setCurrent] = useState();
   return (
     <Fetch
       url={'static-data/member/manifest.json'}
@@ -61,6 +61,8 @@ const About = createWithRemoteLoader({
             title="关于我们"
             menu={
               <Menu
+                currentKey={current}
+                onChange={setCurrent}
                 items={[
                   {
                     key: 'group',
