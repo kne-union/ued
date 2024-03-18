@@ -65,52 +65,28 @@ export const globalInit = async () => {
     }
   });
 
-  const { data } = await ajax(Object.assign({}, apis.manifest.getDetail));
-
-  const componentsMap = new Map(data['remote-components'].map(item => [item.name, item]));
+  const { data: remoteComponents } = await ajax(Object.assign({}, apis.manifest.getRemoteComponents));
 
   const remoteUrl = 'https://registry.npmmirror.com',
     remoteTpl = '{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build';
 
-  const componentsCoreRemote = {
-    remote: 'components-core',
-    url: remoteUrl,
-    tpl: remoteTpl,
-    defaultVersion: componentsMap.get('components-core')['version']
-  };
-
-  const remoteComponents = transform(
-    data['remote-components'],
-    (result, value) => {
-      result[value.name] = {
-        remote: value.name,
+  const remoteComponentsLoader = transform(
+    remoteComponents,
+    (result, { name, version }) => {
+      result[name] = {
+        remote: name,
         url: remoteUrl,
         tpl: remoteTpl,
-        defaultVersion: value.version
+        defaultVersion: version
       };
     },
     {}
   );
 
-  const libs = transform(
-    data['libs'],
-    (result, value) => {
-      result[value.name] = {
-        remote: value.name,
-        url: remoteUrl,
-        tpl: remoteTpl,
-        defaultVersion: value.version
-      };
-    },
-    {}
-  );
+  remoteComponentsLoader.default = remoteComponentsLoader['components-core'];
 
   remoteLoaderPreset({
-    remotes: {
-      default: componentsCoreRemote,
-      ...remoteComponents,
-      ...libs
-    }
+    remotes: remoteComponentsLoader
   });
 };
 
