@@ -1,4 +1,4 @@
-<div style="display: flex;gap: 36px;padding: 32px; background: linear-gradient(#e66465, #9198e5);">
+<div style="display: flex;gap: 36px;padding: 32px; background: linear-gradient(#e66465, #9198e5);border-radius: 8px;box-shadow: rgba(0,0,0, 0.1) 5px 5px 10px;">
     <div>
         <img title="" src="./assets/avatar-meetacoo.png" alt="" width="150" style="border-radius: 50%;margin: 0 auto;display: block;">
     </div>
