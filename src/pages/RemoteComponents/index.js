@@ -16,7 +16,7 @@ const RemoteComponentsPage = compose(
   })
 )(({ remoteModules, data }) => {
   const { libs, libsMap } = useMemo(() => {
-    const libs = data['remote-components'].map(item => {
+    const libs = data.map(item => {
       return {
         label: item.name,
         value: item.name,
@@ -130,7 +130,7 @@ const RemoteComponents = createWithRemoteLoader({
   const { apis } = usePreset();
   return (
     <RemoteComponentsPage
-      {...Object.assign({}, apis.manifest.getDetail, {
+      {...Object.assign({}, apis.manifest.getRemoteComponentsList, {
         transformResponse: response => {
           return { data: { code: 200, results: response.data } };
         }
