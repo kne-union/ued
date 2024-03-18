@@ -24,27 +24,20 @@ const MiniprogramsPage = compose(
   const miniprograms = data || [];
   return (
     <Example
-      baseUrl="/miniprograms"
+      baseUrl="/node-libs"
       readme={transform(
         miniprograms.map(({ packageName, description, name, readme }) => {
           return {
             url: `/static-data/manifest/${readme}`,
             transformResponse,
+            transformData: data =>
+              Object.assign({}, data, {
+                packageName,
+                description
+              }),
             packageName,
             description,
-            name,
-            transformData: readme => {
-              return Object.assign({}, readme, {
-                summary: `<p style="text-align: center"><img width="200px" height="200px" src="${`/static-data/${name}/index.jpg`}" alt="小程序首页"></p>${readme.summary}`,
-                packageName,
-                description,
-                example: Object.assign({}, readme.example, {
-                  list: (readme.example.list || []).map((item, index) => {
-                    return Object.assign({}, item, { qrcodeUrl: `/static-data/${name}/${index}.jpg` });
-                  })
-                })
-              });
-            }
+            name
           };
         }),
         (result, value, key) => {
@@ -56,14 +49,14 @@ const MiniprogramsPage = compose(
   );
 });
 
-const Miniprograms = createWithRemoteLoader({
+const NodeLibs = createWithRemoteLoader({
   modules: ['Global@usePreset']
 })(({ remoteModules }) => {
   const [usePreset] = remoteModules;
   const { apis } = usePreset();
   return (
     <MiniprogramsPage
-      {...Object.assign({}, apis.manifest.getMiniprogramsList, {
+      {...Object.assign({}, apis.manifest.getNodeLibsList, {
         transformResponse: response => {
           return { data: { code: 200, results: response.data } };
         }
@@ -72,4 +65,4 @@ const Miniprograms = createWithRemoteLoader({
   );
 });
 
-export default Miniprograms;
+export default NodeLibs;

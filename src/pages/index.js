@@ -11,6 +11,7 @@ const pages = {
   RemoteComponents: loadableWithProps(() => import('./RemoteComponents')),
   Libs: loadableWithProps(() => import('./Libs')),
   Miniprograms: loadableWithProps(() => import('./Miniprograms')),
+  NodeLibs: loadableWithProps(() => import('./NodeLibs')),
   PostCat: loadableWithProps(() => import('./PostCat')),
   Blog: loadableWithProps(() => import('./Blog')),
   Engineering: loadableWithProps(() => import('./Engineering')),
