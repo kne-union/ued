@@ -5,7 +5,7 @@ import { globalPreset } from './preset';
 import '@kne/modules-dev/dist/create-entry.css';
 import './index.scss';
 
-const { Home, Error, RemoteComponents, Libs, Miniprograms, PostCat, Blog, Engineering, About, NotFound } = pages;
+const { Home, Error, RemoteComponents, Libs, NodeLibs, Miniprograms, PostCat, Blog, Engineering, About, NotFound } = pages;
 const App = () => {
   return (
     <Routes>
@@ -18,8 +18,13 @@ const App = () => {
             paths={[
               {
                 key: 'libs',
-                title: '库',
+                title: '前端库',
                 path: '/libs'
+              },
+              {
+                key: 'node-libs',
+                title: 'Node库',
+                path: '/node-libs'
               },
               {
                 key: 'components',
@@ -60,6 +65,8 @@ const App = () => {
         <Route path="components/:id" element={<RemoteComponents />} />
         <Route path="libs" element={<Libs />} />
         <Route path="libs/:id" element={<Libs />} />
+        <Route path="node-libs" element={<NodeLibs />} />
+        <Route path="node-libs/:id" element={<NodeLibs />} />
         <Route path="miniprograms" element={<Miniprograms />} />
         <Route path="miniprograms/:id" element={<Miniprograms />} />
         <Route path="postcat" element={<PostCat baseUrl="/postcat" />} />

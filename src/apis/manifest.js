@@ -1,9 +1,3 @@
-const getDetail = {
-  url: '/ued-manifest/manifest.json',
-  method: 'GET',
-  cache: 'ued-manifest'
-};
-
 const getRemoteComponents = {
   url: '/static-data/manifest/remote-components.json',
   method: 'GET',
@@ -14,6 +8,12 @@ const getLibsList = {
   url: '/static-data/manifest/list/libs.json',
   method: 'GET',
   cache: 'list-libs-components'
+};
+
+const getNodeLibsList = {
+  url: '/static-data/manifest/list/node-libs.json',
+  method: 'GET',
+  cache: 'list-node-libs-components'
 };
 
 const getRemoteComponentsList = {
@@ -28,6 +28,12 @@ const getMiniprogramsList = {
   cache: 'list-miniprograms'
 };
 
-const apis = { getDetail, getRemoteComponents, getRemoteComponentsList, getLibsList, getMiniprogramsList };
+const apis = {
+  getRemoteComponents,
+  getRemoteComponentsList,
+  getLibsList,
+  getNodeLibsList,
+  getMiniprogramsList
+};
 
 export default apis;
