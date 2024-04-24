@@ -6,12 +6,19 @@ import { preset as remoteLoaderPreset } from '@kne/remote-loader';
 import apis from './apis';
 import transform from 'lodash/transform';
 import omit from 'lodash/omit';
+import monacoLoader from '@monaco-editor/loader';
 
 if (window.runtimePublicUrl) {
   window.PUBLIC_URL = window.runtimePublicUrl;
 } else {
   window.PUBLIC_URL = process.env.PUBLIC_URL;
 }
+
+monacoLoader.config({
+  paths: {
+    vs: 'https://registry.npmmirror.com/monaco-editor/0.48.0/files/min/vs'
+  }
+});
 
 export const ajax = (() => {
   const instance = axios.create({
