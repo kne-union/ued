@@ -1,13 +1,18 @@
-import { useMemo, useState, useRef } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import { createWithRemoteLoader, useLoader } from '@kne/remote-loader';
 import { Typography } from 'antd';
 import createEntry from '@kne/modules-dev/dist/create-entry';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, useSearchParams, useLocation } from 'react-router-dom';
 import get from 'lodash/get';
 import { withFetch } from '@kne/react-fetch';
 import compose from '@kne/compose';
 
 const Example = createEntry.Example;
+
+const filterMap = {
+  libName: '组件库',
+  version: '版本'
+};
 
 const RemoteComponentsPage = compose(
   withFetch,
@@ -38,13 +43,31 @@ const RemoteComponentsPage = compose(
   }, [data]);
 
   const [fields, getFilterValue] = remoteModules;
-  const [filter, setFilter] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filter, setFilter] = useState(() => {
+    const value = Array.from(searchParams.entries()).map(([key, value]) => {
+      return {
+        label: filterMap[key],
+        name: key,
+        value: { label: value, value }
+      };
+    });
+    return value;
+  });
   const { id: currentComponent } = useParams();
-
+  const searchString = searchParams.toString();
+  useEffect(() => {
+    const filterValue = getFilterValue(filter);
+    const newSearchParams = new URLSearchParams(searchString);
+    ['libName', 'version'].forEach(key => {
+      filterValue[key] ? newSearchParams.set(key, filterValue[key]) : newSearchParams.delete(key);
+    });
+    currentComponent && setSearchParams(newSearchParams.toString());
+  }, [filter, currentComponent, searchString]);
   const filterValue = getFilterValue(filter);
-  const libName = filterValue['libName'] || get(libs, '[0].value');
-  const libNameRef = useRef(null);
 
+  const libName = filterValue['libName'] || get(libs, '[0].value');
+  const libNameRef = useRef(libName);
   const filterVersion = filterValue['version'];
 
   const version = useMemo(() => {
@@ -74,6 +97,7 @@ const RemoteComponentsPage = compose(
 
   return (
     <Example
+      key={`${libName}/${version}:components`}
       baseUrl="/components"
       readme={components}
       pageProps={{
