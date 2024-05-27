@@ -14,8 +14,6 @@ if (window.runtimePublicUrl) {
   window.PUBLIC_URL = process.env.PUBLIC_URL;
 }
 
-console.log(window.PUBLIC_URL);
-
 monacoLoader.config({
   paths: {
     vs: 'https://unpkg.com/monaco-editor/0.48.0/min/vs'
