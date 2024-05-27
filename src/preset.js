@@ -14,9 +14,11 @@ if (window.runtimePublicUrl) {
   window.PUBLIC_URL = process.env.PUBLIC_URL;
 }
 
+console.log(window.PUBLIC_URL);
+
 monacoLoader.config({
   paths: {
-    vs: 'https://registry.npmmirror.com/monaco-editor/0.48.0/files/min/vs'
+    vs: 'https://unpkg.com/monaco-editor/0.48.0/min/vs'
   }
 });
 
@@ -74,8 +76,8 @@ export const globalInit = async () => {
 
   const { data: remoteComponents } = await ajax(Object.assign({}, apis.manifest.getRemoteComponents));
 
-  const remoteUrl = 'https://registry.npmmirror.com',
-    remoteTpl = '{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build';
+  const remoteUrl = 'https://unpkg.com',
+    remoteTpl = '{{url}}/@kne-components/{{remote}}@{{version}}/build';
 
   const remoteComponentsLoader = transform(
     remoteComponents,
