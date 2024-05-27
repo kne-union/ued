@@ -35,7 +35,7 @@ const MiniprogramsPage = compose(
             name,
             transformData: readme => {
               return Object.assign({}, readme, {
-                summary: `<p style="text-align: center"><img width="200px" height="200px" src="${`/static-data/${name}/index.jpg`}" alt="小程序首页"></p>${readme.summary}`,
+                summary: readme.summary,
                 packageName,
                 description,
                 example: Object.assign({}, readme.example, {

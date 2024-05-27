@@ -6,12 +6,21 @@ import { preset as remoteLoaderPreset } from '@kne/remote-loader';
 import apis from './apis';
 import transform from 'lodash/transform';
 import omit from 'lodash/omit';
+import monacoLoader from '@monaco-editor/loader';
 
 if (window.runtimePublicUrl) {
   window.PUBLIC_URL = window.runtimePublicUrl;
 } else {
   window.PUBLIC_URL = process.env.PUBLIC_URL;
 }
+
+console.log(window.PUBLIC_URL);
+
+monacoLoader.config({
+  paths: {
+    vs: 'https://unpkg.com/monaco-editor/0.48.0/min/vs'
+  }
+});
 
 export const ajax = (() => {
   const instance = axios.create({
@@ -67,8 +76,8 @@ export const globalInit = async () => {
 
   const { data: remoteComponents } = await ajax(Object.assign({}, apis.manifest.getRemoteComponents));
 
-  const remoteUrl = 'https://registry.npmmirror.com',
-    remoteTpl = '{{url}}/@kne-components%2f{{remote}}/{{version}}/files/build';
+  const remoteUrl = 'https://unpkg.com',
+    remoteTpl = '{{url}}/@kne-components/{{remote}}@{{version}}/build';
 
   const remoteComponentsLoader = transform(
     remoteComponents,
