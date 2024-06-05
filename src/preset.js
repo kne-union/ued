@@ -74,8 +74,8 @@ export const globalInit = async () => {
 
   const { data: remoteComponents } = await ajax(Object.assign({}, apis.manifest.getRemoteComponents));
 
-  const remoteUrl = 'https://unpkg.com',
-    remoteTpl = '{{url}}/@kne-components/{{remote}}@{{version}}/build';
+  const remoteUrl = 'https://uc.fatalent.cn',
+    remoteTpl = '{{url}}/packages/@kne-components/{{remote}}/{{version}}/build';
 
   const remoteComponentsLoader = transform(
     remoteComponents,
