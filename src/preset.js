@@ -16,7 +16,7 @@ if (window.runtimePublicUrl) {
 
 monacoLoader.config({
   paths: {
-    vs: 'https://unpkg.com/monaco-editor@0.48.0/min/vs'
+    vs: 'https://uc.fatalent.cn/packages/monaco-editor/0.48.0/min/vs'
   }
 });
 
