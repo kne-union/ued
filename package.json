@@ -60,7 +60,7 @@
     "@craco/craco": "^7.1.0",
     "@kne/craco-module-federation": "^1.1.2",
     "@kne/modules-dev": "^2.0.24",
-    "@kne/react-fetch": "^1.4.2",
+    "@kne/react-fetch": "^1.5.5",
     "@kne/remote-loader": "^1.2.3",
     "@loadable/component": "^5.16.3",
     "antd": "^5.13.3",
